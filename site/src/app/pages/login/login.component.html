@@ -7,10 +7,21 @@
 >
   <form [formGroup]="loginForm">
 
-    <h3>Email:</h3>
-    <input type="email" placeholder="Ex.: 123@gmail.com">
-    <h3>Senha:</h3>
-    <input type="password">
+    <app-primary-input
+      formControlName="email"
+      inputName="email"
+      type="email"
+      placeHolder="Ex.: 123@gmail.com"
+      label="Email:"
+    ></app-primary-input>
+
+    <app-primary-input
+      formControlName="password"
+      inputName="password"
+      type="password"
+      placeHolder="Senha"
+      label="Senha:"
+    ></app-primary-input>
 
   </form>
 </app-default-layout>
