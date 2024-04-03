@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-default-layout',
@@ -11,5 +11,14 @@ export class DefaultLayoutComponent {
   @Input() title: string = "";
   @Input() primaryBtn: string = "";
   @Input() secundaryBtn: string = "";
+  @Output("submit") onSubmit = new EventEmitter();
+  @Output("navigate") onNavigate = new EventEmitter();
 
+  submit(){
+    this.onSubmit.emit();
+  }
+
+  navigate(){
+    this.onNavigate.emit();
+  }
 }
