@@ -46,7 +46,7 @@ export class LoginComponent {
   }
 
   navigate(){
-    this.router.navigate(["register"])
+    this.router.navigate(["cadastro"])
   }
 
 }
