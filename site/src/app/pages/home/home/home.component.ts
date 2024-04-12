@@ -38,7 +38,8 @@ export class HomeComponent {
   }
 
   onEdit(links: Links){
-    this.router.navigate(['edit', links._id], {relativeTo: this.route})
+    console.log("id: ", links.id);
+    this.router.navigate(['edit', links.id], {relativeTo: this.route})
   }
 
 }
