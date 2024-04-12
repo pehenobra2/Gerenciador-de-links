@@ -1,1 +1,48 @@
-<p>home works!</p>
+<table mat-table [dataSource]="links" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="titulo">
+    <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="url">
+    <mat-header-cell *matHeaderCellDef> Url </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.url}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="sufixo">
+    <mat-header-cell *matHeaderCellDef> Sufixo </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.sufixo}} </mat-cell>
+  </ng-container>
+
+
+  <ng-container matColumnDef="dataCriada">
+    <mat-header-cell *matHeaderCellDef> Data de criação </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.dataCriada}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef>
+      <button mat-mini-fab color="accent">
+        <mat-icon (click)="onAdd()">add</mat-icon>
+      </button>
+    </mat-header-cell>
+
+    <mat-cell *matCellDef="let links">
+      <button mat-mini-button color="primary">
+        <mat-icon (click)="onEdit(links)">edit</mat-icon>
+      </button>
+      <button mat-mini-button color="warn">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+
+
+  </ng-container>
+
+
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</table>

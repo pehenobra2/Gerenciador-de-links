@@ -45,10 +45,15 @@ export class RegisterComponent {
 
   submit(){
     this.loginService.register(this.registerFrom.value.name, this.registerFrom.value.email, this.registerFrom.value.password).subscribe({
-      next: () => this.toastService.success("Cadastro concluído com sucesso!"),
+      next: () => {
+        this.toastService.success("Cadastro concluído com sucesso!");
+        this.navigate();
+      },
       error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
     })
+
   }
+
 
   navigate(){
     this.router.navigate(["login"])

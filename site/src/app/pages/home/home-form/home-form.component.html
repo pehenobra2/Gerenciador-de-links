@@ -1,0 +1,28 @@
+<app-default-layout
+  title="Novo link"
+  primaryBtn="Salvar"
+  secundaryBtn="Cancelar"
+  (submit)="onSubmit()"
+  (navigate)="onCancel()"
+>
+  <form [formGroup]="form">
+
+    <app-primary-input
+      formControlName="titulo"
+      inputName="titulo"
+      type="text"
+      placeHolder="Ex.: Teste"
+      label="Titulo:"
+    ></app-primary-input>
+
+    <app-primary-input
+      formControlName="url"
+      inputName="url"
+      type="text"
+      placeHolder="teste.com"
+      label="Url:"
+    ></app-primary-input>
+
+
+  </form>
+</app-default-layout>

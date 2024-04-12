@@ -38,14 +38,16 @@ export class LoginComponent {
     })
   }
 
-  submit(){
+  submit() {
     this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => this.toastService.success("Login feito com sucesso!"),
+      next: () => {
+        this.toastService.success("Login feito com sucesso!");
+        this.navigateToHome();
+      },
       error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
-
-    })
-    this.navigateToHome();
+    });
   }
+
 
   navigateToHome(){
     this.router.navigate(["home"])

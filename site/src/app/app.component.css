@@ -1,4 +1,5 @@
 mat-toolbar{
   background-color: rgb(56, 56, 56);
-  color: white
+  color: white;
+  font-size: 2em;
 }
