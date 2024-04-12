@@ -22,4 +22,8 @@ export class LinksService {
   save(record:Partial<Links>){
     return this.HttpClient.post<Links>(this.api , record)
   }
+
+  loadById(id: string){
+    return this.HttpClient.get<Links>(`${this.api}/${id}`);
+  }
 }
