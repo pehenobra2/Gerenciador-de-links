@@ -20,10 +20,25 @@ export class LinksService {
 
 
   save(record:Partial<Links>){
-    return this.HttpClient.post<Links>(this.api , record)
+    if(record.id){
+      return this.update(record);
+    }
+    return this.create(record);
   }
 
   loadById(id: string){
     return this.HttpClient.get<Links>(`${this.api}/${id}`);
+  }
+
+  private create(record:Partial<Links>){
+    return this.HttpClient.post<Links>(this.api , record)
+  }
+
+  private update(record: Partial<Links>){
+    return this.HttpClient.put<Links>(`${this.api}/${record.id}`, record)
+  }
+
+  delete(id: string){
+    return this.HttpClient.delete(`${this.api}/${id}`)
   }
 }

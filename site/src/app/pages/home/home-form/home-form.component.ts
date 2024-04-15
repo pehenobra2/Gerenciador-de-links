@@ -48,12 +48,13 @@ export class HomeFormComponent {
       url: new FormControl('', [Validators.required]),
     });
 
-    
+
   }
 
   ngOnInit(): void {
     const link: Links = this.route.snapshot.data['link'];
     this.form.setValue({
+      id: link.id,
       titulo: link.titulo,
       url: link.url
     })
