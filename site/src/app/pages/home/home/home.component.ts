@@ -16,6 +16,7 @@ import {
   MatDialogTitle,
   MatDialogContent,} from '@angular/material/dialog'
 import { MatButtonModule } from '@angular/material/button';
+import { DialogConfirmationComponent } from '../../../components/dialog-confirmation/dialog-confirmation.component';
 
 @Component({
   selector: 'app-home',
@@ -57,47 +58,29 @@ export class HomeComponent {
     this.router.navigate(['edit', links.id], {relativeTo: this.route})
   }
 
-  openDialog(){
-    this.dialog.open(DialogCardComponent, {
-      width: '250px'
-    });
-  }
 
   onDelete(links: Links){
+    const dialogRef = this.dialog.open(DialogConfirmationComponent, {
+      data: 'Gostaria de excluir esse link?'
+    })
 
+    dialogRef.afterClosed().subscribe((result: boolean) =>{
+      if(result){
+        this.linksService.delete(links.id).subscribe({
+          next:() => {
+            this.refresh();
+            this.toastService.success("Link excluído com sucesso!");
+    
+    
+          },
+          error: () => this.toastService.error("Erro ao excluir novo link")
+        })
+      }
+    })
 
-    this.openDialog()
-    this.linksService.delete(links.id).subscribe({
-      next:() => {
-        this.refresh();
-        this.toastService.success("Link excluído com sucesso!");
-
-
-      },
-      error: () => this.toastService.error("Erro ao excluir novo link")
-    });
+    
   };
 
 }
 
 
-
-@Component({
-  selector: 'dialog-card',
-  templateUrl: 'dialog-card.html',
-  standalone: true,
-  imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
-})
-export class DialogCardComponent {
-  constructor(public dialogRef: MatDialogRef<DialogCardComponent>) {}
-
-  response = false;
-
-  responseNot(){
-    this.response = false;
-  }
-
-  responseYes(){
-    this.response = true;
-  }
-}
