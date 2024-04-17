@@ -1,3 +1,5 @@
+<button ><mat-icon (click)="logout()">logout</mat-icon></button>
+
 <table mat-table [dataSource]="links" class="mat-elevation-z8">
 
   <ng-container matColumnDef="titulo">
@@ -35,6 +37,9 @@
       </button>
       <button mat-mini-button color="warn">
         <mat-icon (click)="onDelete(links)">delete</mat-icon>
+      </button>
+      <button mat-mini-button>
+        <mat-icon >content_copy</mat-icon>
       </button>
     </mat-cell>
 

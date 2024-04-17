@@ -17,6 +17,7 @@ import {
   MatDialogContent,} from '@angular/material/dialog'
 import { MatButtonModule } from '@angular/material/button';
 import { DialogConfirmationComponent } from '../../../components/dialog-confirmation/dialog-confirmation.component';
+import { AuthGuard } from '../../../services/auth-guard.service';
 
 @Component({
   selector: 'app-home',
@@ -36,7 +37,8 @@ export class HomeComponent {
     private router: Router,
     private route: ActivatedRoute,
     private toastService: ToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authGuard: AuthGuard
   ){
 
     this.links = this.linksService.list();
@@ -81,6 +83,9 @@ export class HomeComponent {
     
   };
 
+  logout(){
+    this.authGuard.logout();
+  }
 }
 
 

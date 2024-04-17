@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     }
   }
 
-  logoff(){
+  logout(){
     sessionStorage.removeItem('auth-token');
 
     this.router.navigate(['/login'])

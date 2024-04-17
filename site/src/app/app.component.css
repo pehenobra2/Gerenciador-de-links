@@ -3,3 +3,7 @@ mat-toolbar{
   color: white;
   font-size: 2em;
 }
+
+span{
+  margin-left: 1em;
+}

@@ -3,3 +3,7 @@ th{
   Color: rgb(199, 199, 199);
   font-weight: bold;
 }
+
+mat-icon{
+  position: right;
+}
