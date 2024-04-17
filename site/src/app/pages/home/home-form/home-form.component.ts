@@ -44,7 +44,7 @@ export class HomeFormComponent {
   ){
     this.form = this.formBuilder.group({
       id: new FormControl(''),
-      titulo: new FormControl('', [Validators.required]),
+      titulo: new FormControl('', [Validators.required, Validators.minLength(5)]),
       url: new FormControl('', [Validators.required]),
     });
 
@@ -73,4 +73,12 @@ export class HomeFormComponent {
   onCancel(){
     this.router.navigate(["home"])
   }
+
+ /* getErrorMessage(fieldName: String){
+    const field = this.form.get(fieldName);
+
+    if(field?.hasError('required')){
+
+    }
+  }*/
 }

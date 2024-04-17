@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { ResolveFn } from '@angular/router';
 
-import { linkResolver } from './link.resolver';
+import { LinkResolver } from './link.resolver';
 
 describe('linkResolver', () => {
-  const executeResolver: ResolveFn<boolean> = (...resolverParameters) => 
-      TestBed.runInInjectionContext(() => linkResolver(...resolverParameters));
+  let resolver: LinkResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
+    resolver = TestBed.inject(LinkResolver);
   });
 
   it('should be created', () => {
-    expect(executeResolver).toBeTruthy();
+    expect(resolver).toBeTruthy();
   });
 });
