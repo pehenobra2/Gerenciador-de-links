@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../../services/auth-guard.service';
 import { PrimaryInputComponent } from './../../../components/primary-input/primary-input.component';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -40,7 +41,8 @@ export class HomeFormComponent {
     private router: Router,
     private service: LinksService,
     private toastService: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private AuthGuard: AuthGuard
   ){
     this.form = this.formBuilder.group({
       id: new FormControl(''),
@@ -60,15 +62,21 @@ export class HomeFormComponent {
     })
   }
 
-  onSubmit(){
-    this.service.save(this.form.value).subscribe({
-      next:() => {
-        this.toastService.success("Cadastro de novo link foi com sucesso!"),
-        this.onCancel()
-        console.log(this.form.value)
-      },
-      error: () => this.toastService.error("Erro ao cadastrar novo link")
-    })
+  onSubmit() {
+    const token = this.AuthGuard.getToken();
+    console.log("o token é :" + token);
+    if (token) {
+      this.service.save(this.form.value, token).subscribe({
+        next: () => {
+          this.toastService.success("Cadastro de novo link foi com sucesso!");
+          this.onCancel();
+          console.log(this.form.value);
+        },
+        error: () => this.toastService.error("Erro ao cadastrar novo link")
+      });
+    } else {
+      this.toastService.error("Erro: Token não disponível");
+    }
   }
   onCancel(){
     this.router.navigate(["home"])

@@ -72,16 +72,20 @@ export class HomeComponent {
           next:() => {
             this.refresh();
             this.toastService.success("Link excluído com sucesso!");
-    
-    
+
+
           },
           error: () => this.toastService.error("Erro ao excluir novo link")
         })
       }
     })
 
-    
+
   };
+
+  goToLink(link: Links){
+    window.open(link.url, '_blank');
+  }
 
   logout(){
     this.authGuard.logout();

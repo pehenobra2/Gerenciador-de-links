@@ -22,6 +22,12 @@ export class AuthGuard implements CanActivate {
     }
   }
 
+  getToken(){
+    const token = sessionStorage.getItem('auth-token');
+
+    return token;
+  }
+
   logout(){
     sessionStorage.removeItem('auth-token');
 
